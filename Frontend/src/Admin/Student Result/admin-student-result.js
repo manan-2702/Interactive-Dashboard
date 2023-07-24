@@ -36,7 +36,10 @@ function AdminStudentResult() {
     const obj = { college: college, department: department, semester: sem };
     const fetchSub = async () => {
       await axios
-        .post(`http://localhost:8000/api/faculty/getCourses`, obj)
+        .post(
+          `https://interactive-dashboard-api.onrender.com/api/faculty/getCourses`,
+          obj
+        )
         .then((res) => {
           const data = res.data.data;
           setCourses(data);
@@ -60,7 +63,10 @@ function AdminStudentResult() {
     };
     const fetchStudents = async () => {
       await axios
-        .post(`http://localhost:8000/api/faculty/get-enrolled-students`, obj)
+        .post(
+          `https://interactive-dashboard-api.onrender.com/api/faculty/get-enrolled-students`,
+          obj
+        )
         .then((res) => {
           const data = res.data.data;
           setUsers(data);
@@ -99,7 +105,10 @@ function AdminStudentResult() {
     };
 
     await axios
-      .post("http://localhost:8000/api/admin/final-marks", send)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/admin/final-marks",
+        send
+      )
       .then((res) => {
         const data = res.data;
         console.log(data);

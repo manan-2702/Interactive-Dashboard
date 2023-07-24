@@ -26,7 +26,10 @@ function NewPwdAdmin() {
       };
 
       axios
-        .patch("http://localhost:8000/api/admin/update-password", obj)
+        .patch(
+          "https://interactive-dashboard-api.onrender.com/api/admin/update-password",
+          obj
+        )
         .then((res) => {
           const data = res;
           navigate("/admin-login");

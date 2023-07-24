@@ -16,11 +16,10 @@ function CourseraForm() {
     // props.setState({ fieldName: event.target.files[0] });
   };
 
-
   // const [course2, setCourse2] = useState("");
   // const [course3, setCourse3] = useState("");
 
-  const handleUpload = async() => {
+  const handleUpload = async () => {
     const data = new FormData();
 
     // {name: student.name, fname: title, enrollment_no: student.enrollment_no, college: student.college, department: student.department, current_semester: student.current_semester, image: image}
@@ -35,12 +34,14 @@ function CourseraForm() {
     console.log(data);
 
     await axios
-      .post("http://localhost:8000/api/student/coursera", data,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data"
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/student/coursera",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      }
       )
       .then((res) => {
         const data = res.data;
@@ -51,7 +52,7 @@ function CourseraForm() {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   return (
     <div className="student-page">
@@ -86,13 +87,22 @@ function CourseraForm() {
                 <tr>
                   <td>Coursera Course Title : </td>
                   <td>
-                    <input type="text" onChange={(e) => setTitle(e.target.value)} value={title} />
+                    <input
+                      type="text"
+                      onChange={(e) => setTitle(e.target.value)}
+                      value={title}
+                    />
                   </td>
                 </tr>
                 <tr>
                   <td>Upload Coursera Certificate : </td>
                   <td>
-                    <input type="file" name="image" className="file" onChange={handleFileChange} />
+                    <input
+                      type="file"
+                      name="image"
+                      className="file"
+                      onChange={handleFileChange}
+                    />
                   </td>
                 </tr>
                 <br />
@@ -161,7 +171,9 @@ function CourseraForm() {
             </tr> */}
               </table>
 
-              <button className="multistep-form-btn" onClick={handleUpload}>Upload</button>
+              <button className="multistep-form-btn" onClick={handleUpload}>
+                Upload
+              </button>
             </div>
           </div>
         </div>

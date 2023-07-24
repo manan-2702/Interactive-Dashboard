@@ -24,34 +24,41 @@ function FacultyPlacement() {
   // console.log("Year", placementYear);
 
   useEffect(() => {
-    const fetchData = async() => {
+    const fetchData = async () => {
       // const obj = {college: college, department: department, placement_year: placementYear};
       // console.log(obj);
-      await axios.get(`http://localhost:8000/api/faculty/placement/all-placements?college=${college}&department=${department}&placement_year=${placementYear}`)
+      await axios
+        .get(
+          `https://interactive-dashboard-api.onrender.com/api/faculty/placement/all-placements?college=${college}&department=${department}&placement_year=${placementYear}`
+        )
+        .then((res) => {
+          const data = res.data.data;
+          setUsers(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    fetchData();
+  }, [department, placementYear]);
+
+  const handleSearch = async (e) => {
+    setSearch(e.target.value);
+    let obj = { college: college, department: department };
+    await axios
+      .post(
+        `https://interactive-dashboard-api.onrender.com/api/faculty/placement/search-placement?enrollment_no=${e.target.value}`,
+        obj
+      )
       .then((res) => {
         const data = res.data.data;
         setUsers(data);
       })
       .catch((err) => {
         console.log(err);
-      })
-    }
-
-    fetchData();
-  },[department, placementYear]);
-
-  const handleSearch = async(e) => {
-    setSearch(e.target.value);
-    let obj = {college: college, department: department}
-    await axios.post(`http://localhost:8000/api/faculty/placement/search-placement?enrollment_no=${e.target.value}`,obj)
-    .then((res) => {
-      const data = res.data.data;
-      setUsers(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+      });
+  };
 
   let srno = 1;
   return (

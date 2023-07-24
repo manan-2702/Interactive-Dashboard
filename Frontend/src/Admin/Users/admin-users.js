@@ -21,7 +21,9 @@ function AdminStudents() {
 
   const fetchData = async () => {
     await axios
-      .get("http://localhost:8000/api/admin/all-students")
+      .get(
+        "https://interactive-dashboard-api.onrender.com/api/admin/all-students"
+      )
       .then((res) => {
         const temp = res;
         setData(temp.data.data);
@@ -34,7 +36,9 @@ function AdminStudents() {
 
   const fetchStudentData = async () => {
     await axios
-      .get("http://localhost:8000/api/admin/all-students")
+      .get(
+        "https://interactive-dashboard-api.onrender.com/api/admin/all-students"
+      )
       .then((res) => {
         const temp = res;
         setData(temp.data.data);
@@ -59,7 +63,9 @@ function AdminStudents() {
 
   const handleFilter = async () => {
     await axios
-      .post(`http://localhost:8000/api/admin/select-student?college=${college}&department=${department}&batch=${batch}`)
+      .post(
+        `https://interactive-dashboard-api.onrender.com/api/admin/select-student?college=${college}&department=${department}&batch=${batch}`
+      )
       .then((res) => {
         setData(res.data.data);
         // console.log('change department',res.data.data,department);
@@ -72,7 +78,7 @@ function AdminStudents() {
   const handleSearch = async (e) => {
     setSearch(e.target.value);
     const res = await axios.get(
-      `http://localhost:8000/api/student/search?enrollment_no=${e.target.value}`
+      `https://interactive-dashboard-api.onrender.com/api/student/search?enrollment_no=${e.target.value}`
     );
     setData(res.data.data);
   };

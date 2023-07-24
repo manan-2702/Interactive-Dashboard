@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MultiStepProgressBar from "./progress-bar";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import moment from "moment";
 // import { useForm } from 'react-step-builder';
 
@@ -55,11 +55,15 @@ function SubForm2(props) {
 
     console.log("data", data);
     await axios
-      .post("http://localhost:8000/api/student/register", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/student/register",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((res) => {
         const data = res.data;
         // console.log(data);

@@ -22,7 +22,10 @@ function AdminStudentBacklog() {
         college: college,
       };
       await axios
-        .post("http://localhost:8000/api/admin/show-backlog", obj)
+        .post(
+          "https://interactive-dashboard-api.onrender.com/api/admin/show-backlog",
+          obj
+        )
         .then((res) => {
           const data = res.data.data;
           console.log(data);

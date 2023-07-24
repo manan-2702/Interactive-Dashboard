@@ -22,7 +22,10 @@ function FacultyHome() {
   const handleClick = async () => {
     const obj = { users: today };
     await axios
-      .post("http://localhost:8000/api/faculty/sendWish", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/faculty/sendWish",
+        obj
+      )
       .then((res) => {
         const data = res.data;
         console.log(data);
@@ -33,18 +36,22 @@ function FacultyHome() {
   };
 
   useEffect(() => {
-    const fetchData = async() => {
-      const obj = {college: clg, department: dept};
-      await axios.post("http://localhost:8000/api/faculty/stats",obj)
-      .then((res) => {
-        const temp = res.data.data;
-        console.log(temp);
-        setData(temp);
-      })
-    }
+    const fetchData = async () => {
+      const obj = { college: clg, department: dept };
+      await axios
+        .post(
+          "https://interactive-dashboard-api.onrender.com/api/faculty/stats",
+          obj
+        )
+        .then((res) => {
+          const temp = res.data.data;
+          console.log(temp);
+          setData(temp);
+        });
+    };
 
     fetchData();
-  },[])
+  }, []);
 
   let srno1 = 1;
   let srno2 = 1;
@@ -54,7 +61,10 @@ function FacultyHome() {
     const fetchData = async () => {
       const obj = { college: clg, department: dept };
       await axios
-        .post("http://localhost:8000/api/faculty/birthday", obj)
+        .post(
+          "https://interactive-dashboard-api.onrender.com/api/faculty/birthday",
+          obj
+        )
         .then((res) => {
           const data = res.data.data;
           console.log("data", data);

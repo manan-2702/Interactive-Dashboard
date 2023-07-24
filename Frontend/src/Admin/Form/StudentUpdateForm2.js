@@ -4,23 +4,26 @@ import MultiStepProgressBar from "./progress-bar";
 import { Users } from "../../Data/user-info";
 import axios from "axios";
 
-
 function StudentUpdateForm2(props) {
   // const { id } = useParams();
   // const student = Users.find((user) => user.enroll === parseInt(id));
 
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     const data = props.state;
-    await axios.patch(`http://localhost:8000/api/admin/update-student/${props.state.enrollment_no}`, data)
-    .then((res) => {
-      const data = res.data.data;
-      alert("Student Updated Successfully");
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+    await axios
+      .patch(
+        `https://interactive-dashboard-api.onrender.com/api/admin/update-student/${props.state.enrollment_no}`,
+        data
+      )
+      .then((res) => {
+        const data = res.data.data;
+        alert("Student Updated Successfully");
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="sub-form">
@@ -188,7 +191,11 @@ function StudentUpdateForm2(props) {
         <button className="multistep-form-btn" onClick={props.prev}>
           Previous
         </button>
-        <button type="submit" className="multistep-form-btn" onClick={handleSubmit}>
+        <button
+          type="submit"
+          className="multistep-form-btn"
+          onClick={handleSubmit}
+        >
           Submit
         </button>
       </div>

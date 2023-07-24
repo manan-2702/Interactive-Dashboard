@@ -24,7 +24,9 @@ function ViewPlacement() {
   useEffect(() => {
     const fetchStd = async () => {
       await axios
-        .get(`http://localhost:8000/api/faculty/placement/placement-info/${id}`)
+        .get(
+          `https://interactive-dashboard-api.onrender.com/api/faculty/placement/placement-info/${id}`
+        )
         .then((res) => {
           const data = res.data.data;
           console.log(data);
@@ -55,11 +57,11 @@ function ViewPlacement() {
       package: Package,
       company: company,
       contract_duration: duration,
-      company_state: compState
+      company_state: compState,
     };
     await axios
       .patch(
-        `http://localhost:8000/api/faculty/placement/update-students/${id}`,
+        `https://interactive-dashboard-api.onrender.com/api/faculty/placement/update-students/${id}`,
         obj
       )
       .then((res) => {
@@ -76,7 +78,7 @@ function ViewPlacement() {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   };
 
   return (

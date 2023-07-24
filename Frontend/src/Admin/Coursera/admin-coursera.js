@@ -25,7 +25,7 @@ function AdminCoursera() {
     const fetchData = async () => {
       await axios
         .get(
-          `http://localhost:8000/api/admin/coursera?college=${college}&department=${department}`
+          `https://interactive-dashboard-api.onrender.com/api/admin/coursera?college=${college}&department=${department}`
         )
         .then((res) => {
           const data = res.data;
@@ -38,10 +38,12 @@ function AdminCoursera() {
     };
 
     fetchData();
-  }, [college,department]);
+  }, [college, department]);
 
   const handleSearch = async (e) => {
-    const res = await axios.get(`http://localhost:8000/api/admin/search-coursera?enrollment_no=${e.target.value}`);
+    const res = await axios.get(
+      `https://interactive-dashboard-api.onrender.com/api/admin/search-coursera?enrollment_no=${e.target.value}`
+    );
     setSearch(e.target.value);
     setUsers(res.data.data);
   };
@@ -173,7 +175,7 @@ function AdminCoursera() {
                             <span>More Details</span>
                             <span>
                               {more && user.enrollment_no === Id ? (
-                              // {more ? (
+                                // {more ? (
                                 <BiChevronUp style={{ marginLeft: "4px" }} />
                               ) : (
                                 <BiChevronDown style={{ marginLeft: "4px" }} />
@@ -184,7 +186,7 @@ function AdminCoursera() {
                       </td>
                     </tr>
                     {more && user.enrollment_no === Id && (
-                    // {more && (
+                      // {more && (
                       <>
                         {user.courses.map((course) => {
                           // console.log(course);
@@ -196,18 +198,18 @@ function AdminCoursera() {
                               <tr style={{ backgroundColor: "#e9eef2" }}>
                                 <td colSpan={6}>
                                   <ul>
-                                  {course.certificates.map((c) => {
-                                    return (
-                                      <li style={{marginLeft: "70px"}}>
-                                        <a
-                                          target="_blank"
-                                          href={`http://localhost:8000/${c.image}`}
-                                        >
-                                          {c.name}
-                                        </a>
-                                      </li>
-                                    );
-                                  })}
+                                    {course.certificates.map((c) => {
+                                      return (
+                                        <li style={{ marginLeft: "70px" }}>
+                                          <a
+                                            target="_blank"
+                                            href={`https://interactive-dashboard-api.onrender.com/${c.image}`}
+                                          >
+                                            {c.name}
+                                          </a>
+                                        </li>
+                                      );
+                                    })}
                                   </ul>
                                 </td>
                               </tr>

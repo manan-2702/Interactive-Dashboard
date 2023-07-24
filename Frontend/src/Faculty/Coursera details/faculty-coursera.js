@@ -30,10 +30,11 @@ function FacultyCoursera() {
   useEffect(() => {
     const fetchData = async () => {
       // const sem = Number(semester);
-      const obj = {college: clg, department: dept, semester: semester};
+      const obj = { college: clg, department: dept, semester: semester };
       await axios
         .post(
-          `http://localhost:8000/api/faculty/coursera`,obj
+          `https://interactive-dashboard-api.onrender.com/api/faculty/coursera`,
+          obj
         )
         .then((res) => {
           const data = res.data;
@@ -50,7 +51,7 @@ function FacultyCoursera() {
 
   const handleSearch = async (e) => {
     const res = await axios.get(
-      `http://localhost:8000/api/admin/search-coursera?enrollment_no=${e.target.value}`
+      `https://interactive-dashboard-api.onrender.com/api/admin/search-coursera?enrollment_no=${e.target.value}`
     );
     setSearch(e.target.value);
     setUsers(res.data.data);
@@ -181,7 +182,7 @@ function FacultyCoursera() {
                                       <li style={{ marginLeft: "70px" }}>
                                         <a
                                           target="_blank"
-                                          href={`http://localhost:8000/${c.image}`}
+                                          href={`https://interactive-dashboard-api.onrender.com/${c.image}`}
                                         >
                                           {c.name}
                                         </a>
@@ -197,7 +198,7 @@ function FacultyCoursera() {
                     </>
                   )}
                 </>
-              )
+              );
             })}
           </table>
           {/* <MaterialReactTable columns={columns} data={Users} /> */}

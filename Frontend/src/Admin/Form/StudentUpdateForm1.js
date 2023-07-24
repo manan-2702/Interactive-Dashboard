@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import MultiStepProgressBar from "./progress-bar";
 import { Users } from "../../Data/user-info";
@@ -20,7 +20,10 @@ function StudentUpdateForm1(props) {
   useEffect(() => {
     const fetchStudent = async () => {
       await axios
-        .post("http://localhost:8000/api/student/getStudent", obj)
+        .post(
+          "https://interactive-dashboard-api.onrender.com/api/student/getStudent",
+          obj
+        )
         .then((res) => {
           const data = res.data;
           // setIsAvailable(true);
@@ -42,7 +45,7 @@ function StudentUpdateForm1(props) {
           props.state.category = student.category;
           props.state.state = student.state;
           props.state.address = student.address;
-          console.log("state",props.state);
+          console.log("state", props.state);
         })
         .catch((err) => {
           console.log(err);
@@ -112,7 +115,7 @@ function StudentUpdateForm1(props) {
           <tr>
             <td>Gender : </td>
             <td>
-            <select
+              <select
                 name="gender"
                 value={props.getState("gender", "")}
                 onChange={props.handleChange}

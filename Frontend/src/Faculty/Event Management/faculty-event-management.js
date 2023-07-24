@@ -31,11 +31,15 @@ function FacultyEventManagement() {
   useEffect(() => {
     const fetchData = async () => {
       // const obj = { college: college, department: department };
-      axios.get("http://localhost:8000/api/faculty/fetch-event").then((res) => {
-        const data = res;
-        setEvents(data.data.data);
-        console.log(data.data.data);
-      });
+      axios
+        .get(
+          "https://interactive-dashboard-api.onrender.com/api/faculty/fetch-event"
+        )
+        .then((res) => {
+          const data = res;
+          setEvents(data.data.data);
+          console.log(data.data.data);
+        });
     };
 
     fetchData();
@@ -56,7 +60,10 @@ function FacultyEventManagement() {
     };
 
     await axios
-      .post("http://localhost:8000/api/faculty/add-event", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/faculty/add-event",
+        obj
+      )
       .then((res) => {
         const data = res.data.data;
         setEvents(data);
@@ -71,7 +78,10 @@ function FacultyEventManagement() {
     const obj = { name: event.name, cordinator: cordinator };
     console.log("obj", obj);
     await axios
-      .post("http://localhost:8000/api/faculty/delete-event", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/faculty/delete-event",
+        obj
+      )
       .then((res) => {
         const data = res.data.data;
         alert("Event Deleted");
@@ -213,7 +223,7 @@ function FacultyEventManagement() {
                       console.log("obj", obj);
                       await axios
                         .post(
-                          "http://localhost:8000/api/faculty/delete-event",
+                          "https://interactive-dashboard-api.onrender.com/api/faculty/delete-event",
                           obj
                         )
                         .then((res) => {

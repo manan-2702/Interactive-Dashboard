@@ -5,19 +5,22 @@ import { Users } from "../../Data/user-info";
 import axios from "axios";
 
 function FacultyUpdateForm2(props) {
-
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     const data = props.state;
-    await axios.patch(`http://localhost:8000/api/admin/update-faculty/${props.state.faculty_id}`, data)
-    .then((res) => {
-      const data = res.data.data;
-      alert("Faculty Updated Successfully");
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+    await axios
+      .patch(
+        `https://interactive-dashboard-api.onrender.com/api/admin/update-faculty/${props.state.faculty_id}`,
+        data
+      )
+      .then((res) => {
+        const data = res.data.data;
+        alert("Faculty Updated Successfully");
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="sub-form">
@@ -29,7 +32,7 @@ function FacultyUpdateForm2(props) {
             <td>
               <select
                 name="year"
-                value={props.getState("year", "")|| "2020"}
+                value={props.getState("year", "") || "2020"}
                 onChange={props.handleChange}
               >
                 <option value="" selected>
@@ -154,7 +157,11 @@ function FacultyUpdateForm2(props) {
         <button className="multistep-form-btn" onClick={props.prev}>
           Previous
         </button>
-        <button type="submit" className="multistep-form-btn" onClick={handleSubmit}>
+        <button
+          type="submit"
+          className="multistep-form-btn"
+          onClick={handleSubmit}
+        >
           Submit
         </button>
       </div>

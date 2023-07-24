@@ -7,7 +7,10 @@ function FacultyForm2(props) {
 
   const handleSubmit = async () => {
     await axios
-      .post("http://localhost:8000/api/faculty/register", props.state)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/faculty/register",
+        props.state
+      )
       .then((res) => {
         const data = res.data;
         console.log(data);

@@ -18,7 +18,10 @@ function FacultyTalentHunt() {
     const obj = { skills: skills };
 
     await axios
-      .post("http://localhost:8000/api/faculty/search-skill", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/faculty/search-skill",
+        obj
+      )
       .then((res) => {
         const data = res.data;
         console.log(data.data);

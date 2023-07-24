@@ -12,21 +12,25 @@ function AdminFacultyComparison() {
   const [college, setCollege] = useState("");
 
   useEffect(() => {
-    const obj = {college: college, department: department};
-    const fetchData = async() => {
-      await axios.post("http://localhost:8000/api/admin/show-comparision",obj)
-      .then((res) => {
-        const data = res.data.data;
-        console.log(data);
-        setFaculties(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    }
+    const obj = { college: college, department: department };
+    const fetchData = async () => {
+      await axios
+        .post(
+          "https://interactive-dashboard-api.onrender.com/api/admin/show-comparision",
+          obj
+        )
+        .then((res) => {
+          const data = res.data.data;
+          console.log(data);
+          setFaculties(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
 
     fetchData();
-  },[college, department])
+  }, [college, department]);
   return (
     <div className="admin-page">
       {/* <Router> */}
@@ -40,7 +44,7 @@ function AdminFacultyComparison() {
               <span>
                 College :{" "}
                 <select onChange={(e) => setCollege(e.target.value)}>
-                  <option value="" selected >
+                  <option value="" selected>
                     --Select College--
                   </option>
                   <option value="GCET">GCET</option>
@@ -78,9 +82,7 @@ function AdminFacultyComparison() {
                   <div>
                     <center>
                       <h3 color="black">"Manan Rajpara"</h3>
-                      <p style={{ color: "gray", fontSize: "14px" }}>
-                        PhD
-                      </p>
+                      <p style={{ color: "gray", fontSize: "14px" }}>PhD</p>
                     </center>
                   </div>
 

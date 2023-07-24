@@ -1,23 +1,26 @@
 import React from "react";
 import MultiStepProgressBar from "./progress-bar";
-import axios from 'axios';
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function FacultyForm2(props) {
-
   const navigate = useNavigate();
 
-  const handleSubmit = async() => {
-    await axios.post("http://localhost:8000/api/faculty/register", props.state)
-    .then((res) => {
-      const data = res.data;
-      console.log(data);
-      alert("Faculty added successfully");
-      navigate("/admin/users");
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+  const handleSubmit = async () => {
+    await axios
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/faculty/register",
+        props.state
+      )
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
+        alert("Faculty added successfully");
+        navigate("/admin/users");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="sub-form">
@@ -154,7 +157,11 @@ function FacultyForm2(props) {
         <button className="multistep-form-btn" onClick={props.prev}>
           Previous
         </button>
-        <button type="button" className="multistep-form-btn" onClick={handleSubmit}>
+        <button
+          type="button"
+          className="multistep-form-btn"
+          onClick={handleSubmit}
+        >
           Submit
         </button>
       </div>

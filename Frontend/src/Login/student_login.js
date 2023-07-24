@@ -30,7 +30,10 @@ function StudentLogin() {
     };
 
     axios
-      .post("http://localhost:8000/api/student/login", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/student/login",
+        obj
+      )
       .then((res) => {
         const data = res;
         navigate("/student/home");
@@ -50,7 +53,10 @@ function StudentLogin() {
     };
 
     axios
-      .post("http://localhost:8000/api/student/forgot-password", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/student/forgot-password",
+        obj
+      )
       .then((res) => {
         const data = res;
 
@@ -73,7 +79,10 @@ function StudentLogin() {
       otp: mainOTP,
     };
     axios
-      .post("http://localhost:8000/api/student/validateOTP", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/student/validateOTP",
+        obj
+      )
       .then((res) => {
         const data = res;
         console.log(data);

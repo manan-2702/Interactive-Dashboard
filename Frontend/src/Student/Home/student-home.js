@@ -30,7 +30,10 @@ function StudentHome() {
         current_semester: student.current_semester,
       };
       await axios
-        .post("http://localhost:8000/api/student/getStudentCourses", obj)
+        .post(
+          "https://interactive-dashboard-api.onrender.com/api/student/getStudentCourses",
+          obj
+        )
         .then((res) => {
           const data = res.data.data;
           console.log("course", data);
@@ -55,7 +58,10 @@ function StudentHome() {
     console.log("data", data);
     const fetchRes = async () => {
       await axios
-        .post("http://localhost:8000/api/student/view-result", data)
+        .post(
+          "https://interactive-dashboard-api.onrender.com/api/student/view-result",
+          data
+        )
         .then((res) => {
           const data = res.data;
           console.log("result", data.data);

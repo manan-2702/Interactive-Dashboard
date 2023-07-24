@@ -31,7 +31,10 @@ function AdminLogin() {
     };
 
     axios
-      .post("http://localhost:8000/api/admin/login", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/admin/login",
+        obj
+      )
       .then((res) => {
         const data = res;
         console.log(data.data);
@@ -53,7 +56,10 @@ function AdminLogin() {
     };
 
     axios
-      .post("http://localhost:8000/api/admin/forgot-password", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/admin/forgot-password",
+        obj
+      )
       .then((res) => {
         const data = res;
 
@@ -76,7 +82,10 @@ function AdminLogin() {
       otp: mainOTP,
     };
     axios
-      .post("http://localhost:8000/api/admin/validateOTP", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/admin/validateOTP",
+        obj
+      )
       .then((res) => {
         const data = res;
         console.log(data);
@@ -98,91 +107,95 @@ function AdminLogin() {
         />
       </div>
       <div>
-      <section className="login-container">
-      <LoginNav />
-      {forgotPwd ? (
-        <>
-          <div className="forgotpwd">
-            <form>
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              {isEmailError && <p className="err-msg">{errorEmail}</p>}
-              <button
-                className="sendOtpBtn"
-                type="button"
-                onClick={handleEmail}
-              >
-                Send OTP
-              </button>
-            </form>
-          </div>
-          {sendOtp && (
-            <div className="forgotpwd">
+        <section className="login-container">
+          <LoginNav />
+          {forgotPwd ? (
+            <>
+              <div className="forgotpwd">
+                <form>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                  {isEmailError && <p className="err-msg">{errorEmail}</p>}
+                  <button
+                    className="sendOtpBtn"
+                    type="button"
+                    onClick={handleEmail}
+                  >
+                    Send OTP
+                  </button>
+                </form>
+              </div>
+              {sendOtp && (
+                <div className="forgotpwd">
+                  <form>
+                    <input
+                      type="text"
+                      placeholder="One Time Password"
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value)}
+                      required
+                    />
+                    {isOtpError && <p className="err-msg">{errorOtp}</p>}
+                    {/* <Link to="/admin-login/new-password"> */}
+                    <button
+                      className="sendOtpBtn"
+                      type="button"
+                      onClick={handleOTP}
+                    >
+                      Submit OTP
+                    </button>
+                    {/* </Link> */}
+                  </form>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="login">
+              <h2 style={{ fontFamily: "Calibri, sans-serif, Helvetica" }}>
+                Admin Login
+              </h2>
+              <hr />
+              <br />
               <form>
                 <input
-                  type="text"
-                  placeholder="One Time Password"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
+                  type="email"
+                  placeholder="Email"
+                  value={uname}
+                  onChange={(e) => setUname(e.target.value)}
                   required
                 />
-                {isOtpError && <p className="err-msg">{errorOtp}</p>}
-                {/* <Link to="/admin-login/new-password"> */}
-                <button
-                  className="sendOtpBtn"
-                  type="button"
-                  onClick={handleOTP}
-                >
-                  Submit OTP
-                </button>
-                {/* </Link> */}
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={adminPassword}
+                  onChange={(e) => setAdminPassword(e.target.value)}
+                  required
+                />
+                {isError && <p className="err-msg">{error}</p>}
+                <span>
+                  <button
+                    className="loginBtn"
+                    type="button"
+                    onClick={handleSubmit}
+                  >
+                    Login
+                  </button>
+                  <span
+                    onClick={() => setForgotPwd(true)}
+                    style={{ fontSize: "2vh", cursor: "pointer" }}
+                  >
+                    Forgot Password?
+                  </span>
+                </span>
               </form>
             </div>
           )}
-        </>
-      ) : (
-        <div className="login">
-          <h2 style={{ fontFamily: "Calibri, sans-serif, Helvetica" }}>
-            Admin Login
-          </h2>
-          <hr />
-          <br />
-          <form>
-            <input
-              type="email"
-              placeholder="Email"
-              value={uname}
-              onChange={(e) => setUname(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={adminPassword}
-              onChange={(e) => setAdminPassword(e.target.value)}
-              required
-            />
-            {isError && <p className="err-msg">{error}</p>}
-            <span>
-              <button className="loginBtn" type="button" onClick={handleSubmit}>
-                Login
-              </button>
-              <span
-                onClick={() => setForgotPwd(true)}
-                style={{ fontSize: "2vh", cursor: "pointer" }}
-              >
-                Forgot Password?
-              </span>
-            </span>
-          </form>
-        </div>
-      )}
-    </section>
+        </section>
       </div>
     </div>
   );

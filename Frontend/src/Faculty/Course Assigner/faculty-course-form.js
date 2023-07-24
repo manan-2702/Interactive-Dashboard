@@ -4,9 +4,8 @@ import { Users } from "../../Data/user-info";
 import FacultyNavBar from "../NavBar/faculty-navbar";
 import FacultyTopBar from "../TopBar/faculty-topbar";
 import "../CSS/faculty.css";
-import axios from 'axios';
+import axios from "axios";
 import { useSelector } from "react-redux";
-
 
 function FacultyCourseForm() {
   const { id } = useParams();
@@ -21,9 +20,9 @@ function FacultyCourseForm() {
   const [core, setCore] = useState();
   const [courses, setCourses] = useState({});
   const [semester, setSemester] = useState(6);
-  const [proElective, setProElective] = useState([])
-  const [openElective, setOpenElective] = useState([])
-  const [coreCourses, setCoreCourses] = useState([])
+  const [proElective, setProElective] = useState([]);
+  const [openElective, setOpenElective] = useState([]);
+  const [coreCourses, setCoreCourses] = useState([]);
   const [arr, setArr] = useState(["str"]);
 
   const [first, setFirst] = useState("");
@@ -32,23 +31,25 @@ function FacultyCourseForm() {
   const subjects = [];
 
   useEffect(() => {
-
     const obj = { enrollment_no: id, college: clg, department: dpt };
-    
+
     const fetchStudent = async () => {
       await axios
-        .post("http://localhost:8000/api/student/getStudent", obj)
+        .post(
+          "https://interactive-dashboard-api.onrender.com/api/student/getStudent",
+          obj
+        )
         .then((res) => {
           const data = res.data;
           setStudent(data.data);
-          setSemester(data.data.current_semester)
+          setSemester(data.data.current_semester);
           // console.log(data.data);
         })
         .catch((err) => {
           console.log(err);
         });
-      };
-      
+    };
+
     fetchStudent();
     // fetchSub();
   }, []);
@@ -57,35 +58,37 @@ function FacultyCourseForm() {
     const obj2 = { college: clg, department: dpt, semester: semester };
     const fetchSub = async () => {
       // console.log(obj2);
-      await axios.post(`http://localhost:8000/api/faculty/getCourses`,obj2)
-      .then((res) => {
-        const data = res.data.data;
-        setCourses(data);
-        data.map((course)=> {
-          if(course.type === "Professional Core"){
-            setCoreCourses(state => [...state, course]);
-          }
-          else if(course.type === "Open Elective"){
-            setOpenElective(state => [...state, course]);
-          }
-          else{
-            setProElective(state => [...state, course]);
-          }
+      await axios
+        .post(
+          `https://interactive-dashboard-api.onrender.com/api/faculty/getCourses`,
+          obj2
+        )
+        .then((res) => {
+          const data = res.data.data;
+          setCourses(data);
+          data.map((course) => {
+            if (course.type === "Professional Core") {
+              setCoreCourses((state) => [...state, course]);
+            } else if (course.type === "Open Elective") {
+              setOpenElective((state) => [...state, course]);
+            } else {
+              setProElective((state) => [...state, course]);
+            }
+          });
         })
-      })
-      .catch((err) => {
-        console.log(err);
-        setCourses([])
-      })
+        .catch((err) => {
+          console.log(err);
+          setCourses([]);
+        });
     };
 
     fetchSub();
-  },[]);
+  }, []);
 
-  const handleSave = async() => {
+  const handleSave = async () => {
     coreCourses.map((course) => {
       subjects.push(course.title);
-    })
+    });
     subjects.push(first);
     subjects.push(second);
 
@@ -96,24 +99,28 @@ function FacultyCourseForm() {
       college: student.college,
       current_semester: student.current_semester,
       department: student.department,
-      batch: student.admission_year
+      batch: student.admission_year,
     };
 
-    await axios.post("http://localhost:8000/api/faculty/assign-subjects",obj)
-    .then((res) => {
-      const data = res.data;
-      console.log(res);
-      alert("Subjects Assigned Successfully")
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+    await axios
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/faculty/assign-subjects",
+        obj
+      )
+      .then((res) => {
+        const data = res.data;
+        console.log(res);
+        alert("Subjects Assigned Successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   var i = 1;
   var j = 1;
   var k = 1;
-  
+
   return (
     <div className="faculty-page">
       <FacultyNavBar />
@@ -176,7 +183,7 @@ function FacultyCourseForm() {
                   <td>
                     <input
                       type="number"
-                      value={ coreCourses.length }
+                      value={coreCourses.length}
                       onChange={(e) => setCore(e.target.value)}
                       disabled
                     />
@@ -211,18 +218,16 @@ function FacultyCourseForm() {
                   <tr>
                     <td>Professional Elective Course : </td>
                     <td>
-                      <select onChange = {(e) => setFirst(e.target.value)}>
+                      <select onChange={(e) => setFirst(e.target.value)}>
                         <option value="" disabled selected>
                           -- Select Subject --
                         </option>
                         {proElective.map((course) => {
                           // console.log(course);
                           // if (course.type === "Professional Elective") {
-                            return (
-                              <option value={course.title}>
-                                {course.title}
-                              </option>
-                            );
+                          return (
+                            <option value={course.title}>{course.title}</option>
+                          );
                           // }
                         })}
                       </select>
@@ -233,17 +238,15 @@ function FacultyCourseForm() {
                   <tr>
                     <td>Open Elective Course : </td>
                     <td>
-                      <select onChange = {(e) => setSecond(e.target.value)}>
-                      <option value="" disabled selected>
+                      <select onChange={(e) => setSecond(e.target.value)}>
+                        <option value="" disabled selected>
                           -- Select Subject --
                         </option>
                         {openElective.map((course) => {
                           // if (course.type === "Open Elective") {
-                            return (
-                              <option value={course.title}>
-                                {course.title}
-                              </option>
-                            );
+                          return (
+                            <option value={course.title}>{course.title}</option>
+                          );
                           // }
                         })}
                       </select>
@@ -262,7 +265,9 @@ function FacultyCourseForm() {
                 >
                   Clear
                 </button>
-                <button className="multistep-form-btn" onClick={handleSave}>Save</button>
+                <button className="multistep-form-btn" onClick={handleSave}>
+                  Save
+                </button>
               </center>
             </div>
           </div>

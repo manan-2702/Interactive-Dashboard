@@ -19,7 +19,10 @@ function ViewFaculty() {
   useEffect(() => {
     const fetchStudent = async () => {
       await axios
-        .post("http://localhost:8000/api/faculty/getFaculty", obj)
+        .post(
+          "https://interactive-dashboard-api.onrender.com/api/faculty/getFaculty",
+          obj
+        )
         .then((res) => {
           const data = res.data;
           setIsAvailable(true);

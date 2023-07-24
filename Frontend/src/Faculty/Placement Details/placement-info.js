@@ -27,9 +27,12 @@ function ViewPlacement() {
 
   useEffect(() => {
     const fetchStd = async () => {
-      const obj = {college: clg};
+      const obj = { college: clg };
       await axios
-        .post(`http://localhost:8000/api/faculty/placement/placement-info-college/${id}`,obj)
+        .post(
+          `https://interactive-dashboard-api.onrender.com/api/faculty/placement/placement-info-college/${id}`,
+          obj
+        )
         .then((res) => {
           const data = res.data.data;
           // console.log(data);
@@ -60,16 +63,16 @@ function ViewPlacement() {
       package: Package,
       company: company,
       contract_duration: duration,
-      company_state: compState
+      company_state: compState,
     };
     await axios
       .patch(
-        `http://localhost:8000/api/faculty/placement/update-students/${id}`,
+        `https://interactive-dashboard-api.onrender.com/api/faculty/placement/update-students/${id}`,
         obj
       )
       .then((res) => {
         const data = res.data.data;
-        console.log("updated",data);
+        console.log("updated", data);
         setStudent(data);
         setYear(data.placement_year);
         setCollege(data.college);
@@ -83,7 +86,7 @@ function ViewPlacement() {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   };
 
   return (
@@ -252,7 +255,9 @@ function ViewPlacement() {
                 >
                   Clear
                 </button>
-                <button className="multistep-form-btn" onClick={handleUpdate}>Save</button>
+                <button className="multistep-form-btn" onClick={handleUpdate}>
+                  Save
+                </button>
               </center>
             </div>
           </div>

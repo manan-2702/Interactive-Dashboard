@@ -13,11 +13,9 @@ import { useSelector } from "react-redux";
 //import MaterialReactTable from "material-react-table";
 
 function FacultyUsers() {
-
   const dpt = useSelector((state) => state.user.userInfo.department);
   const clg = useSelector((state) => state.user.userInfo.college);
   const token = useSelector((state) => state.user.token);
-
 
   const [student, setStudent] = useState(true);
   const [college, setCollege] = useState(clg);
@@ -28,15 +26,17 @@ function FacultyUsers() {
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
-    const obj = {college: college, department: department};
+    const obj = { college: college, department: department };
     let url;
     if (student !== true) {
-      url = "http://localhost:8000/api/faculty/all-students";
+      url =
+        "https://interactive-dashboard-api.onrender.com/api/faculty/all-students";
     } else {
-      url = "http://localhost:8000/api/faculty/all-faculties";
+      url =
+        "https://interactive-dashboard-api.onrender.com/api/faculty/all-faculties";
     }
     axios
-      .post(url,obj)
+      .post(url, obj)
       .then((res) => {
         const temp = res;
         setData(temp.data.data);
@@ -48,10 +48,13 @@ function FacultyUsers() {
   };
 
   const fetchStudentData = async () => {
-    const obj = {college: college, department: department};
+    const obj = { college: college, department: department };
 
     axios
-      .post("http://localhost:8000/api/faculty/all-students",obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/faculty/all-students",
+        obj
+      )
       .then((res) => {
         const temp = res;
         setData(temp.data.data);
@@ -76,16 +79,16 @@ function FacultyUsers() {
 
   const handleFilter = async () => {
     let url;
-    const obj = {college: college, department: department};
+    const obj = { college: college, department: department };
 
     if (student === true) {
-      url = `http://localhost:8000/api/faculty/select-student?semester=${semester}`;
+      url = `https://interactive-dashboard-api.onrender.com/api/faculty/select-student?semester=${semester}`;
     } else {
-      url = `http://localhost:8000/api/faculty/all-faculties`;
+      url = `https://interactive-dashboard-api.onrender.com/api/faculty/all-faculties`;
     }
 
     axios
-      .post(url,obj)
+      .post(url, obj)
       .then((res) => {
         setData(res.data.data);
         // console.log('change department',res.data.data,department);
@@ -98,13 +101,13 @@ function FacultyUsers() {
   const handleSearch = async (e) => {
     let url;
     if (student) {
-      url = `http://localhost:8000/api/faculty/search-student?enrollment_no=${e.target.value}`;
+      url = `https://interactive-dashboard-api.onrender.com/api/faculty/search-student?enrollment_no=${e.target.value}`;
     } else {
-      url = `http://localhost:8000/api/faculty/search-faculty?faculty_id=${e.target.value}`;
+      url = `https://interactive-dashboard-api.onrender.com/api/faculty/search-faculty?faculty_id=${e.target.value}`;
     }
-    const obj = {college: college, department: department};
+    const obj = { college: college, department: department };
     setSearch(e.target.value);
-    const res = await axios.post(url,obj);
+    const res = await axios.post(url, obj);
     setData(res.data.data);
   };
 

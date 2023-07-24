@@ -13,11 +13,15 @@ function StudentUpcomingEvent() {
   useEffect(() => {
     const fetchData = async () => {
       // const obj = { college: college, department: department };
-      axios.get("http://localhost:8000/api/faculty/fetch-event").then((res) => {
-        const data = res;
-        setEvents(data.data.data);
-        console.log(data.data.data);
-      });
+      axios
+        .get(
+          "https://interactive-dashboard-api.onrender.com/api/faculty/fetch-event"
+        )
+        .then((res) => {
+          const data = res;
+          setEvents(data.data.data);
+          console.log(data.data.data);
+        });
     };
 
     fetchData();
@@ -52,11 +56,13 @@ function StudentUpcomingEvent() {
                   <tr>
                     <td>Volunteering Form URL : </td>
                     <td>
-                      {event.link ?
-                      <a href={`${event.link}`} target="_blank">
-                        {event.link}
-                      </a> : "--"
-                      }
+                      {event.link ? (
+                        <a href={`${event.link}`} target="_blank">
+                          {event.link}
+                        </a>
+                      ) : (
+                        "--"
+                      )}
                     </td>
                   </tr>
                   <tr>

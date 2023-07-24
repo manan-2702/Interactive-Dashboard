@@ -6,7 +6,6 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { login } from "../store/userSlice";
 
-
 function FacultyLogin() {
   const [uname, setUname] = useState("");
   const [facultyPassword, setFacultyPassword] = useState("");
@@ -24,7 +23,6 @@ function FacultyLogin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   const handleSubmit = async () => {
     const obj = {
       email: uname,
@@ -32,7 +30,10 @@ function FacultyLogin() {
     };
 
     axios
-      .post("http://localhost:8000/api/faculty/login", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/faculty/login",
+        obj
+      )
       .then((res) => {
         const data = res;
         console.log(data.data);
@@ -53,7 +54,10 @@ function FacultyLogin() {
     };
 
     axios
-      .post("http://localhost:8000/api/faculty/forgot-password", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/faculty/forgot-password",
+        obj
+      )
       .then((res) => {
         const data = res;
 
@@ -76,7 +80,10 @@ function FacultyLogin() {
       otp: mainOTP,
     };
     axios
-      .post("http://localhost:8000/api/faculty/validateOTP", obj)
+      .post(
+        "https://interactive-dashboard-api.onrender.com/api/faculty/validateOTP",
+        obj
+      )
       .then((res) => {
         const data = res;
         console.log(data);

@@ -57,7 +57,10 @@ function AdminPlacement() {
     };
     const fetchData = async () => {
       await axios
-        .post(`http://localhost:8000/api/admin/show-placement`, obj)
+        .post(
+          `https://interactive-dashboard-api.onrender.com/api/admin/show-placement`,
+          obj
+        )
         .then((res) => {
           const data = res.data.data;
           setUsers(data);
@@ -75,7 +78,7 @@ function AdminPlacement() {
     setSearch(e.target.value);
     await axios
       .get(
-        `http://localhost:8000/api/faculty/placement/search?enrollment_no=${e.target.value}`
+        `https://interactive-dashboard-api.onrender.com/api/faculty/placement/search?enrollment_no=${e.target.value}`
       )
       .then((res) => {
         const data = res.data.data;

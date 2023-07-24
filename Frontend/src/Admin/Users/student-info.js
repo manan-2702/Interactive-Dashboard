@@ -24,7 +24,10 @@ function ViewStudent() {
   useEffect(() => {
     const fetchStudent = async () => {
       await axios
-        .post("http://localhost:8000/api/student/getStudent", obj)
+        .post(
+          "https://interactive-dashboard-api.onrender.com/api/student/getStudent",
+          obj
+        )
         .then(async (res) => {
           setStudent(res.data.data);
           setIsAvailable(true);
@@ -35,7 +38,10 @@ function ViewStudent() {
             current_semester: res.data.data.current_semester,
           };
           await axios
-            .post("http://localhost:8000/api/student/view-result", data)
+            .post(
+              "https://interactive-dashboard-api.onrender.com/api/student/view-result",
+              data
+            )
             .then((res) => {
               const data = res.data.data;
               console.log("result", data);
@@ -166,7 +172,7 @@ function ViewStudent() {
                             <li>
                               <a
                                 target="_blank"
-                                href={`http://localhost:8000/${document.image}`}
+                                href={`https://interactive-dashboard-api.onrender.com/${document.image}`}
                               >
                                 {str}
                               </a>

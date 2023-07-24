@@ -38,7 +38,10 @@ function FacultyStudentResult() {
     const obj = { college: clg, department: dpt, semester: semester };
     const fetchSub = async () => {
       await axios
-        .post(`http://localhost:8000/api/faculty/getCourses`, obj)
+        .post(
+          `https://interactive-dashboard-api.onrender.com/api/faculty/getCourses`,
+          obj
+        )
         .then((res) => {
           const data = res.data.data;
           setCourses(data);
@@ -62,7 +65,10 @@ function FacultyStudentResult() {
     };
     const fetchStudents = async () => {
       await axios
-        .post(`http://localhost:8000/api/faculty/get-enrolled-students`, obj)
+        .post(
+          `https://interactive-dashboard-api.onrender.com/api/faculty/get-enrolled-students`,
+          obj
+        )
         .then((res) => {
           const data = res.data.data;
           setUsers(data);
@@ -100,11 +106,14 @@ function FacultyStudentResult() {
     let url = "";
 
     if (exam === "Mid Sem") {
-      url = "http://localhost:8000/api/faculty/mid-marks";
+      url =
+        "https://interactive-dashboard-api.onrender.com/api/faculty/mid-marks";
     } else if (exam === "Internal Practical") {
-      url = "http://localhost:8000/api/faculty/internal-prac";
+      url =
+        "https://interactive-dashboard-api.onrender.com/api/faculty/internal-prac";
     } else if (exam === "External Practical") {
-      url = "http://localhost:8000/api/faculty/viva-marks";
+      url =
+        "https://interactive-dashboard-api.onrender.com/api/faculty/viva-marks";
     }
 
     await axios

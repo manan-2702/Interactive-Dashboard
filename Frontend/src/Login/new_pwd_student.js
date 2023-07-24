@@ -26,7 +26,10 @@ function NewPwdStudent() {
       };
 
       axios
-        .patch("http://localhost:8000/api/student/update-password", obj)
+        .patch(
+          "https://interactive-dashboard-api.onrender.com/api/student/update-password",
+          obj
+        )
         .then((res) => {
           const data = res;
           navigate("/");

@@ -30,7 +30,10 @@ function FacultyCourseAssigner() {
     const obj = { department: dpt, semester: semester };
     const fetchSub = async () => {
       await axios
-        .post(`http://localhost:8000/api/faculty/getCourses`, obj)
+        .post(
+          `https://interactive-dashboard-api.onrender.com/api/faculty/getCourses`,
+          obj
+        )
         .then((res) => {
           const data = res.data.data;
           setCourses(data);
@@ -45,7 +48,7 @@ function FacultyCourseAssigner() {
     const fetchStudents = async () => {
       await axios
         .post(
-          `http://localhost:8000/api/admin/select-student?college=${clg}&department=${dpt}&semester=${semester}`
+          `https://interactive-dashboard-api.onrender.com/api/admin/select-student?college=${clg}&department=${dpt}&semester=${semester}`
         )
         .then((res) => {
           const data = res.data.data;
@@ -63,7 +66,7 @@ function FacultyCourseAssigner() {
   const handleSearch = async (e) => {
     setSearch(e.target.value);
     const res = await axios.get(
-      `http://localhost:8000/api/student/searching?enrollment_no=${e.target.value}&college=${clg}&department=${dpt}`
+      `https://interactive-dashboard-api.onrender.com/api/student/searching?enrollment_no=${e.target.value}&college=${clg}&department=${dpt}`
     );
     setUsers(res.data.data);
   };

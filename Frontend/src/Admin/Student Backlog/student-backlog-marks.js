@@ -52,7 +52,10 @@ function AdminStudentBacklogResult() {
     };
     const fetchSub = async () => {
       await axios
-        .post(`http://localhost:8000/api/faculty/getCourses`, obj)
+        .post(
+          `https://interactive-dashboard-api.onrender.com/api/faculty/getCourses`,
+          obj
+        )
         .then((res) => {
           const data = res.data.data;
           setCourses(data);
@@ -75,7 +78,10 @@ function AdminStudentBacklogResult() {
         college: college,
       };
       await axios
-        .post("http://localhost:8000/api/admin/show-backlog", obj)
+        .post(
+          "https://interactive-dashboard-api.onrender.com/api/admin/show-backlog",
+          obj
+        )
         .then((res) => {
           const data = res.data.data;
           console.log(data);

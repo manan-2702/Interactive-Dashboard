@@ -17,7 +17,9 @@ function AdminFaculties() {
 
   const fetchData = async () => {
     await axios
-      .get("http://localhost:8000/api/admin/all-faculties")
+      .get(
+        "https://interactive-dashboard-api.onrender.com/api/admin/all-faculties"
+      )
       .then((res) => {
         const temp = res;
         setData(temp.data.data);
@@ -39,7 +41,7 @@ function AdminFaculties() {
   const handleFilter = async () => {
     await axios
       .post(
-        `http://localhost:8000/api/admin/select-faculty?college=${college}&department=${department}`
+        `https://interactive-dashboard-api.onrender.com/api/admin/select-faculty?college=${college}&department=${department}`
       )
       .then((res) => {
         setData(res.data.data);
@@ -53,7 +55,7 @@ function AdminFaculties() {
   const handleSearch = async (e) => {
     setSearch(e.target.value);
     const res = await axios.get(
-      `http://localhost:8000/api/faculty/search?faculty_id=${e.target.value}`
+      `https://interactive-dashboard-api.onrender.com/api/faculty/search?faculty_id=${e.target.value}`
     );
     setData(res.data.data);
   };

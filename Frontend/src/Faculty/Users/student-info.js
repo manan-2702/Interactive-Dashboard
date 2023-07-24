@@ -20,7 +20,10 @@ function ViewStudent() {
   useEffect(() => {
     const fetchStudent = async () => {
       await axios
-        .post("http://localhost:8000/api/student/getStudent", obj)
+        .post(
+          "https://interactive-dashboard-api.onrender.com/api/student/getStudent",
+          obj
+        )
         .then((res) => {
           const data = res.data;
           setIsAvailable(true);
@@ -40,7 +43,7 @@ function ViewStudent() {
       {/* <Router> */}
       <FacultyNavBar />
       <FacultyTopBar />
-      {isAvailable ? 
+      {isAvailable ? (
         <div>
           <div className="student-info-page">
             <div className="stud-dtl">
@@ -139,7 +142,7 @@ function ViewStudent() {
                           <li>
                             <a
                               target="_blank"
-                              href={`http://localhost:8000/${document.image}`}
+                              href={`https://interactive-dashboard-api.onrender.com/${document.image}`}
                             >
                               {str}
                             </a>
@@ -153,9 +156,9 @@ function ViewStudent() {
             </div>
           </div>
         </div>
-        :
+      ) : (
         <h1>Please Wait...</h1>
-      }
+      )}
     </div>
   );
 }

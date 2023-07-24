@@ -16,7 +16,7 @@ function AdminHome() {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get("http://localhost:8000/api/admin/stats")
+        .get("https://interactive-dashboard-api.onrender.com/api/admin/stats")
         .then((res) => {
           const data = res.data.data;
           console.log(data);
