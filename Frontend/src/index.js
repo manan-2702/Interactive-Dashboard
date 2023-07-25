@@ -13,7 +13,6 @@ import storage from "redux-persist/lib/storage";
 import storageSession from "redux-persist/lib/storage/session";
 import userReducer from "./store/userSlice";
 
-
 const persistConfig = {
   key: "user-store",
   storage,
@@ -37,10 +36,10 @@ const persistor = persistStore(store);
 
 root.render(
   // <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate persistor={persistor} loading={<Loading />}>
-        <App />
-      </PersistGate>
-    </Provider>
+  <Provider store={store}>
+    <PersistGate persistor={persistor} loading={<Loading />}>
+      <App />
+    </PersistGate>
+  </Provider>
   // </React.StrictMode>
 );
