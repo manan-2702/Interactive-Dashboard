@@ -19,7 +19,7 @@ const persistConfig = {
 };
 
 const Loading = () => {
-  return <div>Loading New</div>;
+  return <>Loading New</>;
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
